@@ -16,13 +16,17 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Build and push
+    - name: Build and Push Image
       uses: docker/build-push-action@v3
       with:
         push: true
         tags: priyankaceq/notes-making-app:my_app
 
-    - name: docker run 
+    - name: docker run image
       run: docker run -d -p8001:8000 priyankaceq/notes-making-app:my_app
-    - name: docker ps 
+
+    - name: docker ps image
       run: docker ps -a
+    
+    - name: docker push image
+      run: docker push priyankaceq/notes-making-app:my_app
