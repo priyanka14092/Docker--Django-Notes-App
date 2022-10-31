@@ -16,17 +16,25 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Build and Push Image
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Build the Docker Image
       uses: docker/build-push-action@v3
-      with:
-        push: true
-        tags: priyankaceq/notes-making-app:my_app
+      run: docker build -t priyankaceq/notes-making-app:my_app_demo .
+      # with:
+      #   context: .
+      #   push: true
+      #   tags: priyankaceq/notes-making-app:my_app
 
-    - name: docker run image
-      run: docker run -d -p8001:8000 priyankaceq/notes-making-app:my_app
+    - name: Images in my Docker Hub
+      run: Docker images
+    # - name: docker run image
+    #   run: docker run -d -p8001:8000 priyankaceq/notes-making-app:my_app
 
-    - name: docker ps image
-      run: docker ps -a
+    # - name: docker ps image
+    #   run: docker ps -a
     
-    - name: docker push image
-      run: docker push priyankaceq/notes-making-app:my_app
+    # - name: docker push image
+    #   run: docker push priyankaceq/notes-making-app:my_app
