@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app-deployment
+  namespace: notes-app
+spec:
+  type: NodePort
+  selector:
+    app: notes
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+      # nodePort: 31000
